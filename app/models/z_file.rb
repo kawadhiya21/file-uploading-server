@@ -2,6 +2,8 @@ class ZFile < ActiveRecord::Base
   DIRECTORY = "/Users/Kshitij/projects/megaupload/public/files"
   attr_accessor :tempfile
   belongs_to :user
+  validates :user, :presence => true
+  validates :name, :presence => true
   
   def save_file
 		begin
@@ -20,8 +22,11 @@ class ZFile < ActiveRecord::Base
     	path = File.join(DIRECTORY, destination_name)
     	FileUtils.move self.tempfile, path
 			self.file_hash = destination_name
-			self.save
-			return true
+			if self.save
+			  return true
+      else
+        return false
+      end
 		rescue
 			return false
 		end
