@@ -1,0 +1,9 @@
+<h3>Files</h3>
+
+<ul>
+  <% @files.each do |f| %>
+    <li><%= link_to f.name, uploader_path(f) %></li>
+  <% end %>
+</ul>
+
+<p><%= link_to "Home", uploaders_path %></p>

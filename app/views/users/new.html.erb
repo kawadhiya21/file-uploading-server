@@ -1,0 +1,20 @@
+<h3>Sign Up</h3>
+
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <h4>Following errors came up</h4>
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <p> Name : <%= f.text_field :name %></p>
+  <p> Email : <%= f.email_field :email %></p>
+  <p> Password : <%= f.password_field :password %></p>
+  <p> Password Confirmation : <%= f.password_field :password_confirmation %></p>
+  <p> <%= f.submit "Sign Up" %></p>
+<% end %>
+
+<br>
+<p> Or <%= link_to("Login", :controller => "sessions", :action => "new") %></p>

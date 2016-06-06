@@ -1,5 +1,7 @@
+<% flash.each do |key, val| %>
+  <b><%= val %></b>
+<% end %>
 <h3>Files</h3>
-
 <ul>
   <% @files.each do |file| %>
     <li><%= link_to file.name, uploader_path(file)%></li>
@@ -11,3 +13,7 @@
   <p><%= file_field_tag 'zfile' %>
   <p><%= submit_tag("Upload") %></p>
 <% end %>
+<% if admin? %>
+  <p><%= link_to('Admin Area', :controller => "users", :action => "admin_area") %></p>
+<% end %>
+<%= link_to 'Logout', '/logout' %>

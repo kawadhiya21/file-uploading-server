@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   root 'uploaders#index'
   resources :uploaders
+  get '/signup' => 'users#new'
+  get 'logout' => 'sessions#logout'
+  get '/admin_area' => 'users#admin_area'
+  resources :users
+  resources :sessions
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,11 @@
+<h3>Login</h3>
+<% flash.each do |key, val| %>
+  <p><%= val %></p>
+<% end %>
+<%= form_for @user, :url => { :controller => "sessions", :action => "create" }, :method => :post do |f| %>
+  <p>Email : <%= f.text_field :email %></p>
+  <p>Password : <%= f.password_field :password %></p>
+  <p><%= f.submit "Login" %>
+<% end %>
+<br>
+<p> Or <%= link_to "Sign Up", "/signup" %></p>
