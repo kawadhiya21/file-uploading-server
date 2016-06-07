@@ -12,13 +12,13 @@ class ZFileTest < ActiveSupport::TestCase
   end
 
   test "should not save without a user" do
-		zfile = ZFile.new
-		zfile.name = "asdf"
-		FileUtils.touch(Dir.pwd + "/test/testing.txt")
-		zfile.tempfile = Dir.pwd + "/test/testing.txt"
-		zfile.save_file
+    zfile = ZFile.new
+    zfile.name = "asdf"
+    FileUtils.touch(Dir.pwd + "/test/testing.txt")
+    zfile.tempfile = Dir.pwd + "/test/testing.txt"
+    zfile.save_file
     assert zfile.errors.full_messages.include? "User can't be blank"
-	end
+  end
 
   test "should save file with a proper user" do
     user = User.new

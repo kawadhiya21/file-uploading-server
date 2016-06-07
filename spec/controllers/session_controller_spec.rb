@@ -23,20 +23,20 @@ RSpec.describe SessionsController, type: :controller do
 
     it "redirects on successful login" do
       user = User.new
-			user.name = "robinhood"
-			user.email = "rbhin@gmail.com"
-			user.password = "asdf1234"
-			user.password_confirmation = "asdf1234"
-			user.save
-			
+      user.name = "robinhood"
+      user.email = "rbhin@gmail.com"
+      user.password = "asdf1234"
+      user.password_confirmation = "asdf1234"
+      user.save
+      
       post :create, :user => { :email => "rbhin@gmail.com", :password => "asdf1234" }
       expect(response).to redirect_to("/")
-		end
+    end
   end
 
   describe "GET logout" do
     it "should logout" do
-			user = User.new
+      user = User.new
       user.name = "robinhood"
       user.email = "rbhin@gmail.com"
       user.password = "asdf1234"

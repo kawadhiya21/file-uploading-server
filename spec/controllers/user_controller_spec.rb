@@ -30,14 +30,14 @@ RSpec.describe UsersController, type: :controller do
 
       @user.save
 
-			user = User.new
+      user = User.new
       user.name = "robinhood1"
       user.email = "rb@gmailed1.com"
       user.password = "asdf1234"
       user.password_confirmation = "asdf1234"
-			user.save
+      user.save
 
-		  user = User.new
+      user = User.new
       user.name = "robinhood2"
       user.email = "rb@gmailed2.com"
       user.password = "asdf1234"
@@ -57,21 +57,21 @@ RSpec.describe UsersController, type: :controller do
       session[:user_id] = @user.id
 
       get :admin_area
-			assigns(:users).each do |u|
-				expect(u.class.name).to eq("User")
-			end
+      assigns(:users).each do |u|
+        expect(u.class.name).to eq("User")
+      end
       expect(response).to render_template("admin_area")
     end
   end
-	
-	describe "GET show" do
-		before :each do
-			@user = User.new
+  
+  describe "GET show" do
+    before :each do
+      @user = User.new
       @user.name = "robinhood"
       @user.email = "rb@gmailed.com"
       @user.password = "asdf1234"
       @user.password_confirmation = "asdf1234"
-			@user.role = "admin"
+      @user.role = "admin"
       @user.save
 
       user = User.new
@@ -80,11 +80,11 @@ RSpec.describe UsersController, type: :controller do
       user.password = "asdf1234"
       user.password_confirmation = "asdf1234"
       user.save
-			zfile = user.z_files.new
-			zfile.name = "abc.pdf"
-			zfile.tempfile = Dir.pwd + "/spec/fixtures/files/abc.pdf"
-			zfile.save
-			@uid1 = user.id
+      zfile = user.z_files.new
+      zfile.name = "abc.pdf"
+      zfile.tempfile = Dir.pwd + "/spec/fixtures/files/abc.pdf"
+      zfile.save
+      @uid1 = user.id
 
       user = User.new
       user.name = "robinhood2"
@@ -92,18 +92,18 @@ RSpec.describe UsersController, type: :controller do
       user.password = "asdf1234"
       user.password_confirmation = "asdf1234"
       user.save
-			zfile = user.z_files.new
+      zfile = user.z_files.new
       zfile.name = "abc.pdf"
       zfile.tempfile = Dir.pwd + "/spec/fixtures/files/abc.pdf"
       zfile.save
     end
 
-		it "should show list of files of user" do
-			session[:user_id] = @user.id
-			get :show, :id => @uid1
-			assigns(:files).each do |f|
-				expect(f.user.id).to eq(@uid1)
-			end
-		end
-	end
+    it "should show list of files of user" do
+      session[:user_id] = @user.id
+      get :show, :id => @uid1
+      assigns(:files).each do |f|
+        expect(f.user.id).to eq(@uid1)
+      end
+    end
+  end
 end
