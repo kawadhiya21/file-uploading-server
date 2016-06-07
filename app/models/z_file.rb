@@ -1,5 +1,5 @@
 class ZFile < ActiveRecord::Base
-  DIRECTORY = "/Users/Kshitij/projects/megaupload/public/files"
+  DIRECTORY = Dir.pwd + "/public/files"
   attr_accessor :tempfile
   belongs_to :user
   validates :user, :presence => true
